@@ -1,0 +1,95 @@
+<!-- registrar.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .entrada-field,
+        .saida-field {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulário de Registro Financeiro</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <p>
+            <label for="id_tipo">Tipo:</label>
+            <select name="tipo" id="id_tipo">
+                <option value="entrada" {% if lancamento.tipo == 'entrada' %}selected{% endif %}>Entrada</option>
+                <option value="saida" {% if lancamento.tipo == 'saida' %}selected{% endif %}>Saída</option>
+            </select>
+        </p>
+        <p class="entrada-field">
+            <label for="id_nome_cliente">Nome do Cliente:</label>
+            <input type="text" name="nome_cliente" id="id_nome_cliente" value="{% if lancamento.nome_cliente %}{{ lancamento.nome_cliente }}{% endif %}">
+        </p>
+        <p class="entrada-field">
+            <label for="id_tratamento">Tratamento:</label>
+            <input type="text" name="tratamento" id="id_tratamento" value="{% if lancamento.tratamento %}{{ lancamento.tratamento }}{% endif %}">
+        </p>
+        <p class="entrada-field">
+            <label for="id_valor_servico">Valor do Serviço:</label>
+            <input type="number" name="valor_servico" id="id_valor_servico" value="{% if lancamento.valor_servico %}{{ lancamento.valor_servico }}{% endif %}">
+        </p>
+        <p class="entrada-field">
+            <label for="id_valor_pago">Valor Pago:</label>
+            <input type="number" name="valor_pago" id="id_valor_pago" value="{% if lancamento.valor_pago %}{{ lancamento.valor_pago }}{% endif %}">
+        </p>
+        <p class="entrada-field">
+            <label for="id_forma_pagamento">Forma de Pagamento:</label>
+            <select name="forma_pagamento" id="id_forma_pagamento">
+                <option value="dinheiro" {% if lancamento.forma_pagamento == 'dinheiro' %}selected{% endif %}>Dinheiro</option>
+                <option value="pix" {% if lancamento.forma_pagamento == 'pix' %}selected{% endif %}>Pix</option>
+                <option value="credito" {% if lancamento.forma_pagamento == 'credito' %}selected{% endif %}>Crédito</option>
+                <option value="debito" {% if lancamento.forma_pagamento == 'debito' %}selected{% endif %}>Débito</option>
+                <option value="outros" {% if lancamento.forma_pagamento == 'outros' %}selected{% endif %}>Outros</option>
+            </select>
+        </p>
+        <p class="saida-field">
+            <label for="id_discriminacao">Discriminação:</label>
+            <textarea name="discriminacao" id="id_discriminacao">{% if lancamento.discriminacao %}{{ lancamento.discriminacao }}{% endif %}</textarea>
+        </p>
+        <p class="saida-field">
+            <label for="id_valor_custo">Valor do Custo:</label>
+            <input type="number" name="valor_custo" id="id_valor_custo" value="{% if lancamento.valor_custo %}{{ lancamento.valor_custo }}{% endif %}">
+        </p>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="{% url 'home' %}">Voltar</a>
+
+    <script>
+        const tipoField = document.getElementById('id_tipo');
+        const entradaFields = document.querySelectorAll('.entrada-field');
+        const saidaFields = document.querySelectorAll('.saida-field');
+
+        function toggleFields() {
+            if (tipoField.value === 'entrada') {
+                entradaFields.forEach(field => field.style.display = 'block');
+                saidaFields.forEach(field => field.style.display = 'none');
+            } else if (tipoField.value === 'saida') {
+                entradaFields.forEach(field => field.style.display = 'none');
+                saidaFields.forEach(field => field.style.display = 'block');
+            }
+        }
+
+        tipoField.addEventListener('change', toggleFields);
+        toggleFields();
+
+        // Inicialização do tipo para edição
+        {% if lancamento %}
+            document.getElementById('id_tipo').value = "{{ lancamento.tipo }}";
+            toggleFields();
+        {% endif %}
+    </script>
+</body>
+
+</html>
