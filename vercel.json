@@ -1,4 +1,14 @@
 {
+    "builds": [
+      {
+        "src": "manage.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "clinicaJ/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
     "routes": [
       {
         "src": "/static/(.*)",
@@ -6,7 +16,8 @@
       },
       {
         "src": "/(.*)",
-        "dest": "manage.py"
+        "dest": "clinicaJ/wsgi.py"
       }
     ]
   }
+  
