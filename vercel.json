@@ -1,17 +1,4 @@
 {
-    "builds": [
-      {
-        "src": "manage.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "50mb",
-          "includeFiles": [
-            "staticfiles/**/*",
-            "templates/**/*"
-          ]
-        }
-      }
-    ],
     "routes": [
       {
         "src": "/static/(.*)",
@@ -23,4 +10,3 @@
       }
     ]
   }
-  
