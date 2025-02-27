@@ -69,7 +69,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gilmarlobo$DB_Clinica',
-        'USER': 'root',
+        'USER': 'gilmarlobo',
         'PASSWORD': 'gilm4150',
         'HOST': 'gilmarlobo.mysql.pythonanywhere-services.com',
         'PORT': '3306',
