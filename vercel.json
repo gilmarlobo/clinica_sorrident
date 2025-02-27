@@ -1,23 +1,15 @@
 {
+    "version": 2,
     "builds": [
       {
         "src": "manage.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "clinicaJ/wsgi.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
-        "src": "/static/(.*)",
-        "dest": "/staticfiles/$1"
-      },
-      {
         "src": "/(.*)",
-        "dest": "clinicaJ/wsgi.py"
+        "dest": "/manage.py"
       }
     ]
   }
-  
