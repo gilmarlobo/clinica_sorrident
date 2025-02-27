@@ -1,12 +1,11 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 from urllib.parse import urlparse
 import pymysql
 
 pymysql.install_as_MySQLdb()
 
-load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +19,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-&g8u+7l2jzr(b2s7i8&0^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Modificado para False na produção.
 
-ALLOWED_HOSTS = ['seu-dominio.vercel.app'] #Adicione seu dominio ou o dominio da vercel.
+ALLOWED_HOSTS = ['seu-usuario.pythonanywhere.com']
+
 
 # Application definition
 
@@ -65,17 +65,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clinicaJ.wsgi.application'
 
-# Database
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'seu_usuario$nome_do_banco',
+        'USER': 'root',
+        'PASSWORD': 'sua_senha',
+        'HOST': 'seu_usuario.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
@@ -105,7 +102,8 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
