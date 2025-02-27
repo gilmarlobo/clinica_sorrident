@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-&g8u+7l2jzr(b2s7i8&0^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Modificado para False na produção.
 
-ALLOWED_HOSTS = ['seu-usuario.pythonanywhere.com']
+ALLOWED_HOSTS = ['gilmarlobo.pythonanywhere.com']
 
 
 # Application definition
@@ -68,10 +68,10 @@ WSGI_APPLICATION = 'clinicaJ.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seu_usuario$nome_do_banco',
+        'NAME': 'gilmarlobo$DB_Clinica',
         'USER': 'root',
-        'PASSWORD': 'sua_senha',
-        'HOST': 'seu_usuario.mysql.pythonanywhere-services.com',
+        'PASSWORD': 'gilm4150',
+        'HOST': 'gilmarlobo.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
