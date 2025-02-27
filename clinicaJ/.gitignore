@@ -42,3 +42,4 @@ settings_local.py
 
 # Arquivos específicos da Vercel
 .vercel
+venv/
