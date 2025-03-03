@@ -1,4 +1,5 @@
 <!-- registrar.html -->
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,97 @@
         .entrada-field,
         .saida-field {
             display: none;
+        }
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            
+        }
+
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 5px rgba(26, 115, 232, 0.3);
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .entrada-field, .saida-field {
+            display: none;
+        }
+
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1557b0;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -37,11 +129,11 @@
         </p>
         <p class="entrada-field">
             <label for="id_valor_servico">Valor do Serviço:</label>
-            <input type="number" name="valor_servico" id="id_valor_servico" value="{% if lancamento.valor_servico %}{{ lancamento.valor_servico }}{% endif %}">
+            <input type="number" name="valor_servico" id="id_valor_servico" value="{% if lancamento.valor_servico %}{{ lancamento.valor_servico|floatformat:2|replace_comma|default:'0.00' }}{% endif %}">
         </p>
         <p class="entrada-field">
             <label for="id_valor_pago">Valor Pago:</label>
-            <input type="number" name="valor_pago" id="id_valor_pago" value="{% if lancamento.valor_pago %}{{ lancamento.valor_pago }}{% endif %}">
+            <input type="number" name="valor_pago" id="id_valor_pago" value="{% if lancamento.valor_pago %}{{ lancamento.valor_pago|floatformat:2|replace_comma|default:'0.00'}}{% endif %}">
         </p>
         <p class="entrada-field">
             <label for="id_forma_pagamento">Forma de Pagamento:</label>
